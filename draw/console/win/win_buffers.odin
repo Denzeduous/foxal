@@ -37,4 +37,6 @@ foreign kernel32 {
 
     @(link_name="GetConsoleScreenBufferInfo") get_console_screen_buffer_info :: proc(h_console_output             :  win32.Handle,
                                                                                      lp_console_screen_buffer_info: ^Console_Screen_Buffer_Info) -> BOOL ---;
+
+    @(link_name="FlushConsoleInputBuffer") flush_console_input_buffer :: proc(h_console_input: win32.Handle) -> BOOL ---;
 }

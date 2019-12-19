@@ -39,4 +39,7 @@ foreign kernel32 {
                                                                                      lp_console_screen_buffer_info: ^Console_Screen_Buffer_Info) -> BOOL ---;
 
     @(link_name="FlushConsoleInputBuffer") flush_console_input_buffer :: proc(h_console_input: win32.Handle) -> BOOL ---;
+
+    @(link_name="SetConsoleTextAttribute") set_console_text_attribute :: proc(h_console_input: win32.Handle,
+                                                                              w_attributes: WORD) -> BOOL ---;
 }

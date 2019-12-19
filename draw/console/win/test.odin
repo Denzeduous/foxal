@@ -1,6 +1,7 @@
 package console_win
 
 import "core:c"
+import "core:fmt"
 
 main :: proc() {
     set_console_title("Test");
@@ -10,9 +11,14 @@ main :: proc() {
 
     output := [4]u8{'a', 'b', 'c', 'd'};
 
-    num_chars_written: LPDWORD;
+    num_chars_written: DWORD;
+    ok: BOOL;
 
-    write_console(buffer_handle, cast(rawptr)&output, cast(DWORD)4, num_chars_written, nil);
+    ok = write_console(buffer_handle, cast(rawptr)&output, cast(DWORD)4, &num_chars_written, nil);
+    
+    if (!ok || num_chars_written != 4) {
+        fmt.println(win32.get_last_error());
+    }
 
     a: Char_Info;
     a.ascii_char = 0x61;
@@ -37,11 +43,11 @@ main :: proc() {
 
     write_region := Small_Rect{4, 0, 8, 0};
 
-    _ok := write_console_output(buffer_handle, &output_color[0], buffer_info.dw_size, Coord{0, 0}, &write_region);
+    ok = write_console_output(buffer_handle, &output_color[0], buffer_info.dw_size, Coord{0, 0}, &write_region);
 
-    ok := _ok ? 't' : 'f';
-
-    write_console(buffer_handle, cast(rawptr)&ok, cast(DWORD)1, num_chars_written, nil);
+    if (!ok) {
+        fmt.println(win32.get_last_error());
+    }
 
     for {
 

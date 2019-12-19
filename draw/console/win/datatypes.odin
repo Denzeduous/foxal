@@ -2,13 +2,14 @@ package console_win
 
 import "core:sys/win32"
 
-BOOL    :: b32;
-SHORT   :: i16;
-WORD    :: u16;
-WCHAR   :: u16;
-CHAR    :: u8;
-LPVOID  :: rawptr;
-LPDWORD :: ^win32.DWORD;
+BOOL    :: distinct b32;
+SHORT   :: distinct i16;
+WORD    :: distinct u16;
+DWORD   :: distinct u32;
+WCHAR   :: distinct u16;
+CHAR    :: distinct u8;
+LPVOID  :: distinct rawptr;
+LPDWORD :: distinct ^DWORD;
 
 GENERIC_READ_ACCESS  :: 0x80000000;
 GENERIC_WRITE_ACCESS :: 0x40000000;
@@ -19,18 +20,18 @@ FILE_SHARE_WRITE :: 0x00000002;
 
 CONSOLE_TEXTMODE_BUFFER :: 0x00000001;
 
-Access :: enum win32.DWORD {
+Access :: enum DWORD {
     READ  = GENERIC_READ_ACCESS,
     WRITE = GENERIC_WRITE_ACCESS,
 }
 
-Share_Mode :: enum win32.DWORD {
+Share_Mode :: enum DWORD {
     NONE  = FILE_SHARE_NONE,
     READ  = FILE_SHARE_READ,
     WRITE = FILE_SHARE_WRITE,
 }
 
-Buffer_Type :: enum win32.DWORD {
+Buffer_Type :: enum DWORD {
     TEXTMODE = CONSOLE_TEXTMODE_BUFFER,
 }
 
@@ -52,7 +53,7 @@ Char_Info :: struct {
         ascii_char: CHAR,
     }
 
-    attributes: win32.WORD,
+    attributes: WORD,
 }
 
 Console_Screen_Buffer_Info :: struct {

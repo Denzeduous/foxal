@@ -28,7 +28,7 @@ foreign kernel32 {
                                                                     dw_buffer_coord :  Coord,
                                                                     lp_write_region : ^Small_Rect) -> BOOL ---;
 
-    @(link_name="SetConsoleCursorPosition") set_console_cursor_position :: proc(h_console_output: win32.Handle,
+    @(link_name="SetConsoleCursorPosition") set_console_cursor_position :: proc(h_console_output  : win32.Handle,
                                                                                 dw_cursor_position: Coord) -> BOOL ---;
 
     @(link_name="SetConsoleWindowInfo") set_console_window_info :: proc(h_console_output :  win32.Handle,
@@ -41,7 +41,7 @@ foreign kernel32 {
     @(link_name="FlushConsoleInputBuffer") flush_console_input_buffer :: proc(h_console_input: win32.Handle) -> BOOL ---;
 
     @(link_name="SetConsoleTextAttribute") set_console_text_attribute :: proc(h_console_input: win32.Handle,
-                                                                              w_attributes: WORD) -> BOOL ---;
+                                                                              w_attributes   : WORD) -> BOOL ---;
 
     @(link_name="SetConsoleScreenBufferSize") set_console_screen_buffer_size :: proc(h_console_output: win32.Handle,
                                                                                      dw_size         : Coord) -> BOOL ---;

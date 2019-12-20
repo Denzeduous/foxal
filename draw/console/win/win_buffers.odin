@@ -42,4 +42,7 @@ foreign kernel32 {
 
     @(link_name="SetConsoleTextAttribute") set_console_text_attribute :: proc(h_console_input: win32.Handle,
                                                                               w_attributes: WORD) -> BOOL ---;
+
+    @(link_name="SetConsoleScreenBufferSize") set_console_screen_buffer_size :: proc(h_console_output: win32.Handle,
+                                                                                     dw_size         : Coord) -> BOOL ---;
 }
